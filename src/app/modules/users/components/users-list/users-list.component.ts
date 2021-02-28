@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PageEvent} from '@angular/material/paginator';
 import {Subscription} from 'rxjs';
 
@@ -11,7 +11,7 @@ import {PaginationResult} from '../../../../shared/models/pagination-result';
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.css']
 })
-export class UsersListComponent implements OnInit, OnDestroy {
+export class UsersListComponent implements OnInit {
 
   sub: Subscription = new Subscription();
   usersList: User[];
@@ -22,27 +22,22 @@ export class UsersListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sub.add(this.usersService.getUsersList(1)
+    this.usersService.getUsersList(1)
       .subscribe(
         (results) => {
           this.usersList = results.data;
           this.paginationResult = results;
         }
-      ));
+      );
   }
 
   goToPage(event?: PageEvent) {
-    this.sub.add(this.usersService.getUsersList(event.pageIndex + 1).subscribe(
+    this.usersService.getUsersList(event.pageIndex + 1).subscribe(
       (results) => {
         this.usersList = results.data;
         this.paginationResult = results;
       }
-    ));
+    );
   }
 
-  ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
-  }
 }

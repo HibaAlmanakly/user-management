@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UsersService} from '../../services/users.service';
+
 import {User} from '../../../../shared/models/user';
 
 @Component({
@@ -10,21 +10,14 @@ import {User} from '../../../../shared/models/user';
 })
 export class UserDetailsComponent implements OnInit {
 
-  private userId: number;
-
   userDetails: User;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
-              private usersService: UsersService) {
+              private router: Router) {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(param => {
-      this.userId = +param.get('id');
-      this.usersService.getUserDetails(this.userId).subscribe(
-        (result) => this.userDetails = result);
-    });
+    this.route.data.subscribe((data) => this.userDetails = data['resolvedData']);
 
   }
 

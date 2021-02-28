@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+
 import {User} from '../../../shared/models/user';
 import {PaginationResult} from '../../../shared/models/pagination-result';
 
@@ -32,8 +33,9 @@ export class UsersService {
    * @param userId User Id
    */
   getUserDetails(userId: number): Observable<User> {
-    return this.http.get<any>(`${this.userDetailsApi}${userId}`).pipe(
-      map((result) => result.data)
-    );
+    return this.http.get<any>(`${this.userDetailsApi}${userId}`)
+      .pipe(
+        map((result) => result.data)
+      );
   }
 }
