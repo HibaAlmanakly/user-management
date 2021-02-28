@@ -17,13 +17,15 @@ export class UserDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private usersService: UsersService) {
-    this.route.paramMap.subscribe(param => this.userId = +param.get('id'));
-
   }
 
   ngOnInit() {
-    this.usersService.getUserDetails(this.userId).subscribe(
-      (result) => this.userDetails = result);
+    this.route.paramMap.subscribe(param => {
+      this.userId = +param.get('id');
+      this.usersService.getUserDetails(this.userId).subscribe(
+        (result) => this.userDetails = result);
+    });
+
   }
 
   backToUsersList(): void {
