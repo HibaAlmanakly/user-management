@@ -1,0 +1,20 @@
+<form [formGroup]="userSearchForm" class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Number</mat-label>
+    <input type="text"
+           placeholder=""
+           aria-label="Number"
+           matInput
+           formControlName="userSearch"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngIf="searchResult && searchResult.first_name" [value]="searchResult.id"
+                  [routerLink]="['/user-details',searchResult.id]">
+        {{searchResult.first_name + ' ' + searchResult.last_name}}
+      </mat-option>
+      <mat-option *ngIf="errorMessage">
+        {{errorMessage}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

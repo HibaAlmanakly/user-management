@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-card {
+  background: #e7e7e7;
+  width: 500px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.mat-card-header {
+  display: block;
+  width: 170px;
+}
+
+.mat-card-header .mat-card-title {
+  margin-bottom: 0;
+}
+
+.mat-card-content {
+  margin-left: 16px;
+}
+
+.mat-card-image {
+  border-radius: 50%;
+  width: 100%;
+  margin: 0;
+}
+
+.mat-card-title {
+  margin-bottom: 1rem !important;
+}
