@@ -22,10 +22,7 @@ export class UsersService {
    * @param pageNumber The page number
    */
   getUsersList(pageNumber: number): Observable<PaginationResult<User>> {
-    return this.http.get<PaginationResult<User>>(`${this.allUsersApi}${pageNumber}`)
-      .pipe(
-        map((result) => result)
-      );
+    return this.http.get<PaginationResult<User>>(`${this.allUsersApi}${pageNumber}`);
   }
 
   /**

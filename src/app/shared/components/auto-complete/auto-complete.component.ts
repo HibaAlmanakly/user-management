@@ -26,10 +26,10 @@ export class AutoCompleteComponent implements OnInit {
       {userSearch: ''}
     );
     this.userSearchForm.get('userSearch').valueChanges.subscribe((value) => {
-        console.log(value);
         if (isNaN(value)) {
           this.errorMessage = 'Enter a number';
         } else if (!isNaN(value)) {
+          this.searchResult = null;
           this.errorMessage = '';
           this.FetchUser(value);
         } else {
